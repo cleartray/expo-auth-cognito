@@ -1,0 +1,40 @@
+{
+  "name": "expo-auth-cognito",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Expo auth session for use with AWS Cognito, using secure storage for token and user info",
+  "author": "oss@cleartray.com",
+  "license": "MIT",
+  "homepage": "https://github.com/cleartray/expo-auth-cognito",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cleartray/expo-auth-cognito.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cleartray/expo-auth-cognito/issues"
+  },
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp",
+    "prepublishOnly": "pnpm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.2",
+    "@typescript/native-preview": "7.0.0-dev.20260509.2",
+    "@vitest/coverage-v8": "^4.1.8",
+    "bumpp": "^11.1.0",
+    "tsdown": "^0.22.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.5"
+  }
+}
