@@ -1,8 +1,8 @@
-name: PR Check
+name: branch-push
 
 on:
-  pull_request:
-    branches: [ main ]
+  push:
+    branches: ["*"]
 
 jobs:
   test:
@@ -20,5 +20,14 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Run tests
+    - name: Typecheck
+      run: npm run typecheck
+
+    - name: Test
       run: npm test
+
+    - name: Build
+      run: npm run build
+
+    - name: Check build
+      run: npm run publint
