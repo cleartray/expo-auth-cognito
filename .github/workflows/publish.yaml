@@ -1,12 +1,9 @@
-name: push
+name: Publish
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - "*"
+    tags:
+      - "*.*.*"
 
 jobs:
   test:
@@ -21,5 +18,5 @@ jobs:
         node-version: 24.x
         cache: 'npm'
 
-    - name: Run checks
-      run: ./scripts/check.sh
+    - name: Publish
+      run: ./scripts/publish.sh
