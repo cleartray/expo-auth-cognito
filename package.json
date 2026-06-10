@@ -1,5 +1,5 @@
 {
-  "name": "expo-auth-cognito",
+  "name": "@cleartray/expo-auth-cognito",
   "type": "module",
   "version": "0.0.1",
   "description": "Expo auth session for use with AWS Cognito, using secure storage for token and user info",
