@@ -10,6 +10,9 @@ npm run typecheck
 # Unit tests
 npm test
 
+# Expo checks
+npm run expodoctor
+
 # Build for linting check
 npm run build
-npm run publint
+npm run buildlint
