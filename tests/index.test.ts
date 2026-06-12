@@ -1,6 +1,6 @@
-import { expect, test } from 'vitest'
+import { it, expect } from '@jest/globals';
 import { fn } from '../src'
 
-test('fn', () => {
+it('fn', () => {
   expect(fn()).toBe('Hello')
 })
