@@ -12,3 +12,7 @@ export const coverageThreshold = {
     statements: 100
   }
 }
+export const setupFiles = [
+  "./tests/mocks/expo-secure-store.ts",
+  "./tests/mocks/expo-auth-session.ts",
+]
