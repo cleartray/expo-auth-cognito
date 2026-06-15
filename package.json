@@ -42,6 +42,8 @@
   "dependencies": {
     "debug": "^4.4.3",
     "expo": "^56.0.11",
+    "expo-auth-session": "~56.0.14",
+    "expo-crypto": "~56.0.4",
     "expo-secure-store": "~56.0.4",
     "react": "19.2.3",
     "react-native": "0.85.3"

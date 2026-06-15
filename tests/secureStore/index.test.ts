@@ -1,4 +1,4 @@
-import { it, expect, jest } from '@jest/globals';
+import { it, expect } from '@jest/globals';
 import {
   getSecureStoreItem,
   getSecureStoreItems,
@@ -9,27 +9,7 @@ import {
 } from '../../src/secureStore'
 import { Platform } from 'react-native';
 
-// Mock expo-secure-store methods that only function on native devices (ios/android)
-jest.mock('expo-secure-store', () => {
-  let mockStore: Record<string, string> = {};
-
-  return {
-    getItem: (key: string) => {
-      // debug('Getting mocked item')
-      return mockStore[key] || null
-    },
-    setItem: (key: string, value: string) => {
-      // debug('Setting mocked item')
-      mockStore[key] = value;
-    },
-    deleteItemAsync: (key: string) => {
-      delete mockStore[key];
-      return Promise.resolve();
-    },
-  };
-});
-
-it('get existing secure store item on mobile device', () => {
+it('Get existing secure store item on mobile device', () => {
   setSecureStoreItem('TEST_KEY', 'TEST_VALUE')
   const value = getSecureStoreItem('TEST_KEY')
   expect(value).toBe('TEST_VALUE')
@@ -56,12 +36,12 @@ it('Set multiple secure store items on mobile device', () => {
   expect(valuesAfterDelete).toEqual(itemsAfterDelete)
 })
 
-it('get non-existent secure store item on mobile device', () => {
+it('Get non-existent secure store item on mobile device', () => {
   const value = getSecureStoreItem('NON_EXISTENT_KEY')
   expect(value).toBeUndefined()
 })
 
-it('web should not use secure store', () => {
+it('Web should not use secure store', () => {
   Platform.OS = 'web'
   setSecureStoreItem('TEST_KEY', 'TEST_VALUE')
   const value = getSecureStoreItem('TEST_KEY')
@@ -72,13 +52,13 @@ it('web should not use secure store', () => {
   expect(values).toBeUndefined()
 })
 
-it('web should not delete from secure store', () => {
+it('Web should not delete from secure store', async () => {
   Platform.OS = 'ios'
   setSecureStoreItem('MOBILE_ONLY_KEY', 'MOBILE_ONLY_VALUE')
 
   Platform.OS = 'web'
-  deleteSecureStoreItem('MOBILE_ONLY_KEY')
-  deleteSecureStoreItems(['MOBILE_ONLY_KEY'])
+  await deleteSecureStoreItem('MOBILE_ONLY_KEY')
+  await deleteSecureStoreItems(['MOBILE_ONLY_KEY'])
 
   Platform.OS = 'ios'
   expect(getSecureStoreItem('MOBILE_ONLY_KEY')).toEqual('MOBILE_ONLY_VALUE')
